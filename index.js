@@ -59,6 +59,19 @@ server.delete("/api/users/:id", (req, res) => {
     });
 });
 
+// PUT  ENd Point .... Editing of a User by Id
+server.put("/api/users/:id", (req, res) => {
+    db.update(req.params.id, req.body)
+      .then(data => {
+        res.status(200).json({
+          data: data
+        });
+      })
+      .catch(err => {
+        res.status(500).send(err);
+      });
+  });
+
 server.listen(4000, () => {
   console.log("\n*** Server Running on http://localhost:4000 ***\n");
 });
