@@ -17,7 +17,7 @@ server.post("/api/users", (req, res) => {
       });
     })
     .catch(err => {
-      res.send(err);
+      res.status(500).send(err);
     });
 });
 // GET  ENd Point .... Fetching of All Users
@@ -29,7 +29,7 @@ server.get("/api/users", (req, res) => {
       });
     })
     .catch(err => {
-      res.send(err);
+      res.status(500).send(err);
     });
 });
 
@@ -42,7 +42,20 @@ server.get("/api/users/:id", (req, res) => {
       });
     })
     .catch(err => {
-      res.send(err);
+      res.status(500).send(err);
+    });
+});
+
+// DELETE  ENd Point .... Deleting a User by Id
+server.delete("/api/users/:id", (req, res) => {
+  db.remove(req.params.id)
+    .then(data => {
+      res.status(200).json({
+        data: data
+      });
+    })
+    .catch(err => {
+      res.status(500).send(err);
     });
 });
 
