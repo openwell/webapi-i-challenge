@@ -20,6 +20,18 @@ server.post("/api/users", (req, res) => {
       res.send(err);
     });
 });
+// GET  ENd Point .... Fetching of All Users
+server.get("/api/users", (req, res) => {
+    db.find()
+      .then(data => {
+        res.status(200).json({
+          data: data
+        });
+      })
+      .catch(err => {
+        res.send(err);
+      });
+  });
 
 server.listen(4000, () => {
   console.log("\n*** Server Running on http://localhost:4000 ***\n");
